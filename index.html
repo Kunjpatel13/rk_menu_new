@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore our menu and order directly through WhatsApp.">
+  <title>Restaurant | Fresh food, made with love</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <nav class="navbar sticky-top site-nav">
+    <div class="container d-flex align-items-center justify-content-between">
+      <a class="navbar-brand brand d-flex align-items-center gap-2 m-0" href="#">
+        <img src="img/RK food_logo_black.png" alt="RK Food" class="site-header-logo">
+        <span id="restaurantName" class="brand-text">RK Food</span>
+      </a>
+      <div class="nav-cart-wrap">
+        <button class="btn btn-brand position-relative" id="navCartBtn" aria-label="View Cart">
+          <i class="bi bi-bag me-1"></i><span class="d-none d-sm-inline">Cart</span> <span class="cart-count"
+            id="cartCount">0</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="home">
+    <div class="container">
+      <div class="hero-copy">
+        <span class="eyebrow"><i class="bi bi-stars me-2"></i>GOOD FOOD. GOOD MOOD.</span>
+        <h1>Made fresh.<br><em>Served with love.</em></h1>
+        <p>Discover delicious favourites, prepared fresh and ready for your table.</p>
+        <a class="btn btn-brand btn-lg" href="#menu">Explore the menu <i class="bi bi-arrow-down-right ms-2"></i></a>
+        <div class="hero-note"><i class="bi bi-clock me-2"></i><span id="openingHours">Open daily · Update hours
+            in restaurant settings</span></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section-space" id="menu">
+      <div class="container">
+        <div class="section-heading">
+          <div><span class="eyebrow">WHAT SOUNDS GOOD?</span>
+            <h2>Explore our menu</h2>
+            <p>Find something delicious for every craving.</p>
+          </div>
+          <div class="menu-search"><i class="bi bi-search"></i><input id="searchInput" type="search"
+              placeholder="Search dishes..." aria-label="Search dishes"></div>
+        </div>
+        <div class="filter-row" id="categoryFilters"><button class="filter-chip active" data-category="all">All
+            items</button></div>
+        <div class="row g-4 mt-2" id="menuGrid">
+          <div class="col-12 text-center py-5">
+            <div class="spinner-border text-warning"></div>
+            <p class="mt-3 text-muted">Loading delicious things...</p>
+          </div>
+        </div>
+        <div id="menuEmpty" class="empty-state d-none"><i class="bi bi-search"></i>
+          <h3>No dishes found</h3>
+          <p>Try another search or category.</p>
+        </div>
+        <div id="menuError" class="alert alert-warning d-none mt-4">Menu could not be loaded. Please check the
+          Supabase setup and refresh.</div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact" class="site-footer">
+    <div class="container py-5">
+      <div class="row g-4">
+        <div class="col-md-6"><a class="navbar-brand brand text-white d-inline-flex align-items-center" href="#"><img
+              src="img/RK food_logo_white.png" alt="RK Food" class="footer-logo me-2"><span id="footerRestaurantName">RK
+              Food</span></a>
+          <p class="footer-muted mt-3">Fresh food, warm hospitality and flavours worth coming back for.</p>
+        </div>
+        <div class="col-md-3">
+          <h6>Visit us</h6>
+          <p class="footer-muted" id="restaurantAddress">Add your restaurant address in admin settings.</p>
+        </div>
+        <div class="col-md-3">
+          <h6>Get in touch</h6>
+          <p class="footer-muted" id="restaurantPhone">Add your contact number in admin settings.</p>
+          <p class="footer-muted" id="restaurantHours">Opening hours</p>
+        </div>
+      </div>
+      <div class="footer-bottom">© <span id="year"></span> <span id="footerNameBottom">RK Food</span>. All rights
+        reserved.</div>
+    </div>
+  </footer>
+
+  <div class="mobile-cart-bar d-none" id="mobileCartBar">
+    <div><strong id="mobileCartItems">0 items</strong><small id="mobileCartTotal">₹0</small></div><button
+      class="btn btn-brand" id="mobileCartBtn">View cart <i class="bi bi-arrow-right ms-2"></i></button>
+  </div>
+
+  <div class="offcanvas offcanvas-end cart-panel" tabindex="-1" id="cartCanvas" aria-labelledby="cartTitle">
+    <div class="offcanvas-header">
+      <div><span class="eyebrow">YOUR SELECTION</span>
+        <h5 class="offcanvas-title" id="cartTitle">Your cart</h5>
+      </div><button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column">
+      <div id="cartItems" class="flex-grow-1"></div>
+      <div class="cart-summary">
+        <div class="d-flex justify-content-between mb-2"><span>Subtotal</span><strong id="cartSubtotal">₹0</strong>
+        </div>
+        <div class="d-flex justify-content-between mb-3"><span>Delivery</span><strong id="cartDelivery">₹0</strong>
+        </div>
+        <div class="d-flex justify-content-between cart-total"><span>Total</span><strong id="cartTotal">₹0</strong>
+        </div>
+        <button class="btn btn-brand w-100 mt-3" id="checkoutBtn">Continue to checkout <i
+            class="bi bi-arrow-right ms-2"></i></button>
+        <small class="text-muted d-block mt-2">Final order is sent to the restaurant through WhatsApp.</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="checkoutModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+      <div class="modal-content checkout-modal">
+        <div class="modal-header">
+          <div><span class="eyebrow">ALMOST THERE</span>
+            <h5 class="modal-title">Your delivery details</h5>
+          </div><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="checkoutForm" novalidate>
+            <div class="row g-3">
+              <div class="col-md-6"><label class="form-label" for="customerName">Full name *</label><input
+                  class="form-control" id="customerName" required maxlength="80" autocomplete="name">
+                <div class="invalid-feedback">Enter your name.</div>
+              </div>
+              <div class="col-md-6"><label class="form-label" for="customerPhone">Mobile number *</label><input
+                  class="form-control" id="customerPhone" required inputmode="numeric" maxlength="10"
+                  pattern="[6-9][0-9]{9}" autocomplete="tel">
+                <div class="invalid-feedback">Enter a valid 10-digit Indian mobile number.</div>
+              </div>
+              <div class="col-12"><label class="form-label" for="customerAddress">Complete delivery address
+                  *</label><textarea class="form-control" id="customerAddress" rows="2" required maxlength="400"
+                  autocomplete="street-address"></textarea>
+                <div class="invalid-feedback">Enter your delivery address.</div>
+              </div>
+              <div class="col-md-6"><label class="form-label" for="customerArea">Area / locality</label><input
+                  class="form-control" id="customerArea" maxlength="100"></div>
+              <div class="col-md-6"><label class="form-label" for="customerCity">City</label><input class="form-control"
+                  id="customerCity" maxlength="80"></div>
+              <div class="col-12"><label class="form-label" for="customerNotes">Order notes
+                  (optional)</label><textarea class="form-control" id="customerNotes" rows="2" maxlength="300"
+                  placeholder="Less spicy, no onions..."></textarea></div>
+            </div>
+            <div class="checkout-disclaimer mt-4"><i class="bi bi-shield-check me-2"></i>Your details and order
+              summary will be transferred to the restaurant's WhatsApp chat. You must press Send in WhatsApp to
+              submit the order.</div>
+            <div class="order-review mt-4" id="checkoutReview"></div>
+            <button class="btn btn-brand w-100 mt-4" type="submit"><i class="bi bi-whatsapp me-2"></i>Continue to
+              WhatsApp</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" id="siteToastContainer">
+    <div id="siteToast" class="toast" role="status">
+      <div class="toast-body"><i class="bi bi-check-circle-fill text-success me-2"></i><span
+          id="toastMessage">Added to cart</span></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/store.js"></script>
+</body>
+
+</html>

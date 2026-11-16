@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Restaurant Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+
+<body class="admin-body">
+    <div class="admin-layout">
+        <aside class="admin-sidebar" id="adminSidebar"><a class="admin-brand" href="#"><span
+                    class="admin-logo small-logo"><i class="bi bi-egg-fried"></i></span><span
+                    id="adminRestaurantName">Restaurant Admin</span></a>
+            <div class="sidebar-label">WORKSPACE</div><a class="sidebar-link active" href="#dashboard"><i
+                    class="bi bi-grid-1x2"></i> Dashboard</a><a class="sidebar-link" href="#menuManagement"><i
+                    class="bi bi-journal-text"></i> Manage menu</a><a class="sidebar-link" href="#categoryManagement"><i
+                    class="bi bi-tags"></i> Categories</a><a class="sidebar-link" href="#settings"><i
+                    class="bi bi-gear"></i> Restaurant settings</a>
+            <div class="sidebar-bottom"><a class="sidebar-link" href="../index.html" target="_blank"><i
+                        class="bi bi-box-arrow-up-right"></i> View website</a><button
+                    class="sidebar-link w-100 text-start" id="logoutBtn"><i class="bi bi-box-arrow-left"></i> Log
+                    out</button></div>
+        </aside>
+        <aside class="admin-sidebar" id="adminSidebar"><a class="admin-brand" href="#"><img
+                    src="../img/RK food_logo_white.png" alt="RK Food" class="admin-brand-logo me-2"><span
+                    id="adminRestaurantName">RK Food Admin</span></a>
+            <div class="sidebar-label">WORKSPACE</div><a class="sidebar-link active" href="#dashboard"><i
+                    class="bi bi-grid-1x2"></i> Dashboard</a><a class="sidebar-link" href="#menuManagement"><i
+                    class="bi bi-journal-text"></i> Manage menu</a><a class="sidebar-link" href="#categoryManagement"><i
+                    class="bi bi-tags"></i> Categories</a><a class="sidebar-link" href="#settings"><i
+                    class="bi bi-gear"></i> Restaurant settings</a>
+            <div class="sidebar-bottom"><a class="sidebar-link" href="../index.html" target="_blank"><i
+                        class="bi bi-box-arrow-up-right"></i> View website</a><button
+                    class="sidebar-link w-100 text-start" id="logoutBtn"><i class="bi bi-box-arrow-left"></i> Log
+                    out</button></div>
+        </aside>
+        <main class="admin-main">
+            <header class="admin-topbar"><button class="btn btn-light d-lg-none" id="sidebarToggle"
+                    aria-label="Toggle sidebar"><i class="bi bi-list"></i></button>
+                <div><span class="eyebrow">OVERVIEW</span>
+                    <h1>Dashboard</h1>
+                </div>
+                <div class="ms-auto admin-user"><span class="admin-avatar"><i class="bi bi-person"></i></span><span
+                        id="adminEmail">Administrator</span></div>
+            </header>
+            <div class="admin-content">
+                <section id="dashboard" class="mb-5">
+                    <div class="welcome-card">
+                        <div><span class="eyebrow">YOUR RESTAURANT AT A GLANCE</span>
+                            <h2>Welcome back 👋</h2>
+                            <p>Manage your menu and keep your online restaurant up to date.</p>
+                        </div><a href="../index.html" target="_blank" class="btn btn-outline-dark">View customer site <i
+                                class="bi bi-arrow-up-right ms-1"></i></a>
+                    </div>
+                    <div class="row g-3 mt-1">
+                        <div class="col-6 col-xl-3">
+                            <div class="stat-card"><span>Total menu items</span><strong id="statTotal">—</strong><i
+                                    class="bi bi-collection"></i></div>
+                        </div>
+                        <div class="col-6 col-xl-3">
+                            <div class="stat-card"><span>Available</span><strong id="statAvailable">—</strong><i
+                                    class="bi bi-check-circle"></i></div>
+                        </div>
+                        <div class="col-6 col-xl-3">
+                            <div class="stat-card"><span>Sold out</span><strong id="statSoldout">—</strong><i
+                                    class="bi bi-slash-circle"></i></div>
+                        </div>
+                        <div class="col-6 col-xl-3">
+                            <div class="stat-card"><span>Categories</span><strong id="statCategories">—</strong><i
+                                    class="bi bi-tags"></i></div>
+                        </div>
+                    </div>
+                </section>
+                <section id="menuManagement" class="admin-section mb-5">
+                    <div class="section-title-row">
+                        <div><span class="eyebrow">YOUR FOOD CATALOGUE</span>
+                            <h2>Manage menu</h2>
+                        </div><button class="btn btn-admin" id="addItemBtn"><i class="bi bi-plus-lg me-2"></i>Add new
+                            item</button>
+                    </div>
+                    <div class="table-responsive admin-table-wrap">
+                        <table class="table align-middle">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Type</th>
+                                    <th>Availability</th>
+                                    <th class="text-end">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="menuTableBody">
+                                <tr>
+                                    <td colspan="6" class="text-center py-5 text-muted">Loading menu...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                <section id="menuManagement" class="admin-section mb-5">
+                    <div class="section-title-row">
+                        <div><span class="eyebrow">YOUR FOOD CATALOGUE</span>
+                            <h2>Manage menu</h2>
+                        </div><button class="btn btn-admin" id="addItemBtn"><i class="bi bi-plus-lg me-2"></i>Add new
+                            item</button>
+                    </div>
+                    <div class="table-scroll-hint d-md-none"><i class="bi bi-arrows-expand me-1"></i>Swipe left/right to
+                        view details &amp; edit</div>
+                    <div class="table-responsive admin-table-wrap">
+                        <table class="table align-middle">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Availability</th>
+                                    <th class="text-end">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="menuTableBody">
+                                <tr>
+                                    <td colspan="5" class="text-center py-5 text-muted">Loading menu...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                <section id="categoryManagement" class="admin-section mb-5">
+                    <div class="section-title-row">
+                        <div><span class="eyebrow">ORGANISE YOUR MENU</span>
+                            <h2>Categories</h2>
+                        </div>
+                    </div>
+                    <form id="categoryForm" class="category-form"><input class="form-control" id="categoryName"
+                            placeholder="New category name" maxlength="60" required><button class="btn btn-admin"
+                            type="submit"><i class="bi bi-plus-lg me-1"></i>Add category</button></form>
+                    <div id="categoryList" class="category-list mt-3"></div>
+                </section>
+                <section id="settings" class="admin-section">
+                    <div class="section-title-row">
+                        <div><span class="eyebrow">BUSINESS DETAILS</span>
+                            <h2>Restaurant settings</h2>
+                        </div>
+                    </div>
+                    <form id="settingsForm" class="settings-card">
+                        <div class="row g-3">
+                            <div class="col-md-6"><label class="form-label">Restaurant name</label><input
+                                    class="form-control" id="settingName" required maxlength="100"></div>
+                            <div class="col-md-6"><label class="form-label">WhatsApp number (country code +
+                                    number)</label><input class="form-control" id="settingWhatsapp"
+                                    placeholder="919876543210" required pattern="[0-9]{10,15}"></div>
+                            <div class="col-md-6"><label class="form-label">Contact phone</label><input
+                                    class="form-control" id="settingPhone"></div>
+                            <div class="col-md-6"><label class="form-label">Opening hours</label><input
+                                    class="form-control" id="settingHours" placeholder="Daily · 11 AM – 11 PM"></div>
+                            <div class="col-12"><label class="form-label">Restaurant address</label><textarea
+                                    class="form-control" id="settingAddress" rows="2"></textarea></div>
+                            <div class="col-md-6"><label class="form-label">Delivery charge (₹)</label><input
+                                    class="form-control" id="settingDelivery" type="number" min="0" step="1"></div>
+                            <div class="col-md-6"><label class="form-label">Minimum order amount (₹)</label><input
+                                    class="form-control" id="settingMinimum" type="number" min="0" step="1"></div>
+                        </div><button class="btn btn-admin mt-4" type="submit">Save settings</button>
+                    </form>
+                </section>
+                <div id="adminNotice" class="admin-notice d-none" role="status"></div>
+            </div>
+        </main>
+    </div>
+
+    <div class="modal fade" id="itemModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <form id="itemForm">
+                    <div class="modal-header">
+                        <div><span class="eyebrow">MENU EDITOR</span>
+                            <h5 class="modal-title" id="itemModalTitle">Add menu item</h5>
+                        </div><button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body"><input type="hidden" id="itemId">
+                        <div class="row g-3">
+                            <div class="col-md-6"><label class="form-label">Item name *</label><input
+                                    class="form-control" id="itemName" required maxlength="100"></div>
+                            <div class="col-md-6"><label class="form-label">Category *</label><select
+                                    class="form-select" id="itemCategory" required></select></div>
+                            <div class="col-12"><label class="form-label">Description</label><textarea
+                                    class="form-control" id="itemDescription" rows="2" maxlength="300"></textarea></div>
+                            <div class="col-md-4"><label class="form-label">Price (₹) *</label><input
+                                    class="form-control" id="itemPrice" type="number" min="0" step="0.01" required>
+                            </div>
+                            <div class="col-md-4"><label class="form-label">Food type</label><select class="form-select"
+                                    id="itemType">
+                                    <option>Veg</option>
+                                    <option>Non-Veg</option>
+                                </select></div>
+                            <div class="col-md-4"><label class="form-label">Availability</label><select
+                                    class="form-select" id="itemAvailable">
+                                    <option value="true">Available</option>
+                                    <option value="false">Sold out</option>
+                                </select></div>
+                            <div class="col-12"><label class="form-label">Food image</label><input class="form-control"
+                                    id="itemImage" type="file" accept="image/png,image/jpeg,image/webp"><small
+                                    class="text-muted">JPG, PNG or WebP. Maximum 5 MB.</small>
+                                <div id="currentImage" class="small text-muted mt-2"></div>
+                            </div>
+                            <div class="col-12 form-check ms-2"><input class="form-check-input" type="checkbox"
+                                    id="itemBestseller"><label class="form-check-label" for="itemBestseller">Mark as
+                                    bestseller</label></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer"><button type="button" class="btn btn-light"
+                            data-bs-dismiss="modal">Cancel</button><button type="submit" class="btn btn-admin"
+                            id="saveItemBtn">Save item</button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="itemModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <form id="itemForm">
+                    <div class="modal-header">
+                        <div><span class="eyebrow">MENU EDITOR</span>
+                            <h5 class="modal-title" id="itemModalTitle">Add menu item</h5>
+                        </div><button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body"><input type="hidden" id="itemId"><input type="hidden" id="itemType"
+                            value="Veg">
+                        <div class="row g-3">
+                            <div class="col-md-6"><label class="form-label">Item name *</label><input
+                                    class="form-control" id="itemName" required maxlength="100"></div>
+                            <div class="col-md-6"><label class="form-label">Category *</label><select
+                                    class="form-select" id="itemCategory" required></select></div>
+                            <div class="col-12"><label class="form-label">Description</label><textarea
+                                    class="form-control" id="itemDescription" rows="2" maxlength="300"></textarea></div>
+                            <div class="col-md-6"><label class="form-label">Price (₹) *</label><input
+                                    class="form-control" id="itemPrice" type="number" min="0" step="0.01" required>
+                            </div>
+                            <div class="col-md-6"><label class="form-label">Availability</label><select
+                                    class="form-select" id="itemAvailable">
+                                    <option value="true">Available</option>
+                                    <option value="false">Sold out</option>
+                                </select></div>
+                            <div class="col-12"><label class="form-label">Food image</label><input class="form-control"
+                                    id="itemImage" type="file" accept="image/png,image/jpeg,image/webp"><small
+                                    class="text-muted">JPG, PNG or WebP. Maximum 5 MB.</small>
+                                <div id="currentImage" class="small text-muted mt-2"></div>
+                            </div>
+                            <div class="col-12 form-check ms-2"><input class="form-check-input" type="checkbox"
+                                    id="itemBestseller"><label class="form-check-label" for="itemBestseller">Mark as
+                                    bestseller</label></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer"><button type="button" class="btn btn-light"
+                            data-bs-dismiss="modal">Cancel</button><button type="submit" class="btn btn-admin"
+                            id="saveItemBtn">Save item</button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/admin.js"></script>
+</body>
+
+</html>
